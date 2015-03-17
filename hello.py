@@ -7,8 +7,8 @@ def application(environ,start_response):
     try:
         url=str(environ["PATH_INFO"])+"?"+str(environ["QUERY_STRING"])
     except:
-        url=="http://translate.google.com"
-    google="http://translate.google.com"
+        return "Wrong"
+    google="https://translate.google.com"
     res=urllib2.urlopen(google+url)
     html=res.read()
     status='200 OK'
