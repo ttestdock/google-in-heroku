@@ -2,8 +2,6 @@ import os
 from wsgiref.simple_server import make_server
 import urllib2
 def application(environ,start_response):
-    #response_body = ['%s: %s' % (key, value) for key, value in sorted(environ.items())]
-    #response_body = '\n'.join(response_body)
     try:
         requestUrl=str(environ["PATH_INFO"])+"?"+str(environ["QUERY_STRING"])
     except:
