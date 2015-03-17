@@ -9,8 +9,9 @@ def application(environ,start_response):
     except:
         return "Wrong"
     google="https://www.google.com"
-    res=urllib2.urlopen(google+url)
-    html=res.read()
+    opener=urllib2.build_opener()
+    opener.addheaders=[('User-agent', 'Mozilla/5.0')]
+    html=opener.open(google+url).read()
     status='200 OK'
     response_headers = [('Content-Type', 'text/html'),('Content-Length', str(len(html)))]
     start_response(status, response_headers)
