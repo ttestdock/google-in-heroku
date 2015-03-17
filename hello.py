@@ -5,15 +5,26 @@ def application(environ,start_response):
     #response_body = ['%s: %s' % (key, value) for key, value in sorted(environ.items())]
     #response_body = '\n'.join(response_body)
     try:
-        url=str(environ["PATH_INFO"])+"?"+str(environ["QUERY_STRING"])
+        requestUrl=str(environ["PATH_INFO"])+"?"+str(environ["QUERY_STRING"])
     except:
-        return "Wrong"
-    google="https://www.google.com"
-    opener=urllib2.build_opener()
-    opener.addheaders=[('User-agent', 'Mozilla/5.0')]
-    html=opener.open(google+url).read()
+        return "Error!"
+    
+    try:
+        userAgent=str(environ["HTTP_USER_AGENT"])
+    except:
+        userAgent="Mozilla/5.0"
+
+    googleUrl="https://www.google.com"
+    
+    try:
+        opener=urllib2.build_opener()
+        opener.addheaders=[('User-agent', userAgent)]
+        html=opener.open(googleUrl+requestUrl).read()
+    except:
+        html="something wrong"
+    
     status='200 OK'
-    response_headers = [('Content-Type', 'text/html'),('Content-Length', str(len(html)))]
+    response_headers = [('Content-Type', 'text/html;charset=utf-8'),('Content-Length', str(len(html)))]
     start_response(status, response_headers)
 
     return html
