@@ -18,15 +18,6 @@ def application(environ,start_response):
 
     return html
 
-def app(environ,start_response):
-    res=urllib2.urlopen("http://www.baidu.com")
-    result=res.read()
-
-    status='200 OK'
-    response_headers = [('Content-Type', 'text/html'),('Content-Length', str(len(result)))]
-    start_response(status, response_headers)
-
-    return result
 port=int(os.environ.get("PORT",5000))
 httpd=make_server('0.0.0.0',port,application)
 httpd.serve_forever()
