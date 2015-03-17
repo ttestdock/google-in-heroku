@@ -1,1 +1,1 @@
-web: python index.py --log-file -
+web: python wsgi.py --log-file -
