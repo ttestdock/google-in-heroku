@@ -1,1 +1,1 @@
-web: python wsgi.py --log-file -
+web: python hello.py
