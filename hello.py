@@ -3,7 +3,7 @@ from wsgiref.simple_server import make_server
 import urllib2
 def application(environ,start_response):
 
-    googleUrl="https://www.google.com"
+    googleUrl="https://scholar.google.com"
 
     try:
         userAgent=str(environ["HTTP_USER_AGENT"])
